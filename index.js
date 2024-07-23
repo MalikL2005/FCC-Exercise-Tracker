@@ -26,16 +26,6 @@ mongoose.connect(MONGO_URI).then(()=>{
 const db = mongoose.connection
 const collection = db.collection('Exercise_Tracker') 
 
-const userSchema = mongoose.Schema({
-  username: {
-    type: String,
-    unique: true
-  }},
-  { versionKey: false }
-)
-const User = mongoose.model('User', userSchema)
-
-
 app.post('/api/users', async (req, res) => {
   const username = req.body.username 
   var user_in_db = await collection.findOne({username: username}) 
